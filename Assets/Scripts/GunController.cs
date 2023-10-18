@@ -24,18 +24,33 @@ public class GunController : MonoBehaviour
 
         Debug.Log("Shooting with weapon: " + currentWeapon.name); // Check if this method gets called
 
+        // Instantiate bullet and retrieve the Bullet script
         GameObject bullet = Instantiate(currentWeapon.bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
 
-        if (rb == null)
+        if (bulletScript != null)
         {
-            Debug.LogError("No Rigidbody2D component found on the bullet prefab.");
+            // Set the bullet's damage.
+            bulletScript.damage = currentWeapon.damage;
+
+            // This assumes the Bullet script takes care of applying the force. If not, you might need the Rigidbody2D part here too.
+        }
+        else
+        {
+            Debug.LogError("No Bullet script attached to the bullet prefab.");
             return;
         }
 
-        // Let's log the force being applied to confirm it's a sensible value
-        Debug.Log("Applying force: " + (firePoint.up * currentWeapon.bulletForce));
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
-        rb.AddForce(firePoint.up * currentWeapon.bulletForce, ForceMode2D.Impulse);
+        if (rb != null)
+        {
+            // Apply force to the bullet's Rigidbody2D component.
+            rb.AddForce(firePoint.up * currentWeapon.bulletForce, ForceMode2D.Impulse);
+        }
+        else
+        {
+            Debug.LogError("No Rigidbody2D component found on the bullet prefab.");
+        }
     }
 }

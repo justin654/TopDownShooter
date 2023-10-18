@@ -126,3 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletForce: 0
+  lifetime: 2
+  damage: 0

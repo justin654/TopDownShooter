@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Rifle
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  damage: 50
+  damage: 100
   range: 100
   bulletPrefab: {fileID: 46266474650827314, guid: 509d6a1b73b9dcd4d8384c7f9454a0e0, type: 3}
-  bulletForce: 50
+  bulletForce: 10
