@@ -764,7 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponText: {fileID: 736024011}
   playerGunController: {fileID: 880518619}
-  weaponIcon: {fileID: 0}
+  weaponIcon: {fileID: 184003441}
 --- !u!4 &1560345589
 Transform:
   m_ObjectHideFlags: 0
