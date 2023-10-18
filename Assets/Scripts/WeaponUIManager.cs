@@ -22,12 +22,6 @@ public class WeaponUIManager : MonoBehaviour
             this.enabled = false; // Disable this script if the weaponText is not assigned
         }
 
-        if (playerGunController == null)
-        {
-            Debug.LogError("Don't forget to assign the player's GunController to this script.");
-            this.enabled = false; // Disable this script if the playerGunController is not assigned
-        }
-
         if (weaponIcon == null)
         {
             Debug.LogError("Don't forget to assign the Image component to the weaponIcon variable.");
@@ -39,7 +33,7 @@ public class WeaponUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerGunController.currentWeapon != null)
+        if (playerGunController != null && playerGunController.currentWeapon != null)
         {
             // Update the text
             weaponText.text = "Current Weapon: " + playerGunController.currentWeapon.name;
@@ -53,6 +47,12 @@ public class WeaponUIManager : MonoBehaviour
             weaponText.text = "No Weapon Selected";
             weaponIcon.enabled = false; // Hide the icon if there's no weapon
         }
+    }
+
+    // Method to be called when the player is spawned since we are spawning at runtime with prefab
+    public void SetPlayerGunController(GunController gunController)
+    {
+        playerGunController = gunController;
     }
 
 }
