@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         // Apply force to the bullet
-        rb.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
         audioSource = GetComponent<AudioSource>();
 
         if (audioSource == null) // If no AudioSource is found
@@ -46,7 +45,7 @@ public class Bullet : MonoBehaviour
         if (hitSound != null)
         {
             audioSource.PlayOneShot(hitSound);
-            // Delay the destruction of the bullet until after the sound finishes playing
+            GetComponent<Collider2D>().enabled = false; // Disable the collider
             Destroy(gameObject, hitSound.length);
         }
         else

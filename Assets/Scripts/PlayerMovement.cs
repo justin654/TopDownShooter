@@ -33,7 +33,8 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = (mouseWorldPosition - transform.position).normalized;
 
         // Calculate the angle
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90; // we subtract 90 degrees to compensate for the sprite orientation
+        // Instead of subtracting 90
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // Apply rotation
         transform.rotation = Quaternion.Euler(0, 0, angle);
