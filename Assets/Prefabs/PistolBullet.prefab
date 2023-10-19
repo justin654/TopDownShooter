@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4513971575251207453}
   - component: {fileID: -8989899958267269615}
   - component: {fileID: 4045297584010208141}
-  m_Layer: 0
+  - component: {fileID: 4179304511891100723}
+  m_Layer: 6
   m_Name: PistolBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +132,7 @@ MonoBehaviour:
   lifetime: 2
   damage: 0
   hitSound: {fileID: 8300000, guid: 8af6ed9c93835044fadbc090e86e1829, type: 3}
+  impactAnimation: {fileID: 7400000, guid: aa3802f7a39bf3743b470f2ae8c82d65, type: 2}
 --- !u!58 &-8989899958267269615
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -163,9 +165,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.25, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.2023182
 --- !u!82 &4045297584010208141
 AudioSource:
   m_ObjectHideFlags: 0
@@ -262,3 +264,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &4179304511891100723
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46266474650827314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ecf4cf91ee42e1143a4919d81ff5c26b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
