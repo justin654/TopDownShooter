@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2513721238184793024}
   - component: {fileID: 103405051296440889}
-  - component: {fileID: 5875684753167323268}
   - component: {fileID: 5709198094125316975}
   - component: {fileID: 1947583900833416904}
   - component: {fileID: 8963489251485494511}
@@ -96,20 +95,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5875684753167323268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2440765099009682857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cd819f4cdee1f74f8391c29cb8bede5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 103405051296440889}
 --- !u!212 &5709198094125316975
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -188,9 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b9a018ddfbaad4292f8652ccbd29cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
   stoppingDistance: 2
-  player: {fileID: 0}
+  retreatDistance: 1.5
+  wanderTime: 2
+  wanderRadius: 5
 --- !u!58 &7055196517782306655
 CircleCollider2D:
   m_ObjectHideFlags: 0

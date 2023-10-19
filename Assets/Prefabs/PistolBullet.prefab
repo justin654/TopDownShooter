@@ -132,7 +132,7 @@ MonoBehaviour:
   lifetime: 2
   damage: 0
   hitSound: {fileID: 8300000, guid: 8af6ed9c93835044fadbc090e86e1829, type: 3}
-  impactAnimation: {fileID: 7400000, guid: aa3802f7a39bf3743b470f2ae8c82d65, type: 2}
+  impactEffectsHandlerPrefab: {fileID: 8566049323121105988, guid: 978128932d2d1764fab2ebfbda580a53, type: 3}
 --- !u!58 &-8989899958267269615
 CircleCollider2D:
   m_ObjectHideFlags: 0

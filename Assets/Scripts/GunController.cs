@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public Weapon currentWeapon; // This is your current weapon, which you might switch out.
-    public Transform firePoint; // The point from which bullets will be fired.
+    public Weapon currentWeapon; // Reference to the equipped weapon. Assign in the inspector or through other methods in-game.
+    public Transform firePoint; // The location where bullets will be spawned.
 
-    private Camera mainCamera; // Main camera reference for screen-to-world calculations.
+    private Camera mainCamera; // Cached reference to the main camera used for converting screen point to world point.
 
-    private void Start()
+    void Start()
     {
-        mainCamera = Camera.main; // Obtain the main camera once at the start.
+        // Initialize references
+        mainCamera = Camera.main; // Cache for performance reasons.
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) // Default fire button is the left mouse button
+        // Listen for the player's input to shoot
+        if (Input.GetButtonDown("Fire1")) // "Fire1" is typically the left mouse button.
         {
             Shoot();
         }
@@ -23,44 +24,41 @@ public class GunController : MonoBehaviour
 
     void Shoot()
     {
+        // Check if a weapon is equipped
         if (currentWeapon == null)
         {
-            Debug.LogError("No weapon selected!");
-            return;
+            Debug.LogError("Attempted to fire without a weapon equipped.");
+            return; // Exit if there's no weapon selected
         }
 
-        // Instantiate bullet and retrieve the Bullet script
+        // Creating a bullet from the prefab
         GameObject bullet = Instantiate(currentWeapon.bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        Bullet bulletScript = bullet.GetComponent<Bullet>(); // Accessing the Bullet script
 
-        if (bulletScript != null)
+        if (bulletScript == null)
         {
-            // Set the bullet's damage.
-            bulletScript.damage = currentWeapon.damage;
-        }
-        else
-        {
-            Debug.LogError("No Bullet script attached to the bullet prefab.");
-            return;
+            Debug.LogError("Bullet prefab does not contain a Bullet script.");
+            return; // Critical failure: The bullet prefab is improperly configured.
         }
 
+        // Set properties on the bullet, specified by the weapon
+        bulletScript.damage = currentWeapon.damage;
+
+        // Try to get the Rigidbody2D from the bullet prefab
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-        if (rb != null)
+        if (rb == null)
         {
-            // Get the mouse position in world coordinates
-            Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPosition.z = 0; // Ensure it's a 2D vector
-
-            // Calculate the shooting direction
-            Vector2 shootDirection = (mouseWorldPosition - firePoint.position).normalized;
-
-            // Apply force to the bullet's Rigidbody2D component in the shooting direction
-            rb.AddForce(shootDirection * currentWeapon.bulletForce, ForceMode2D.Impulse);
+            Debug.LogError("Bullet prefab missing Rigidbody2D component.");
+            return; // Critical failure: The bullet prefab is improperly configured.
         }
-        else
-        {
-            Debug.LogError("No Rigidbody2D component found on the bullet prefab.");
-        }
+
+        // Calculate the shooting direction
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = firePoint.position.z; // Ensure the z-axis doesn't interfere with calculations
+
+        Vector2 shootingDirection = (mouseWorldPosition - firePoint.position).normalized;
+
+        // Apply shooting force
+        rb.AddForce(shootingDirection * currentWeapon.bulletForce, ForceMode2D.Impulse);
     }
 }
