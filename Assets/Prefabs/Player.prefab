@@ -189,6 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  hpBarPrefab: {fileID: 4988730006744553251, guid: 3838fc94fdb2b4c4ca24567e375f4794, type: 3}
+  uiCanvas: {fileID: 0}
+  hpBarOffset: {x: 0, y: 0.5, z: 0}
   spawner: {fileID: 0}
 --- !u!1 &3348877551811073683
 GameObject:
