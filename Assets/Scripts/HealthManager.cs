@@ -17,6 +17,10 @@ public class HealthManager : MonoBehaviour
             Debug.LogError("No EnemySpawner found in the scene.");
         }
     }
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+    }
 
     public void TakeDamage(float damageAmount)
     {
